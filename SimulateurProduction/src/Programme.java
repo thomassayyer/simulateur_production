@@ -1,11 +1,18 @@
-
-public class Programme {
-
-	public static void main(String[] args) {
-
-		System.out.println("Coucou");
-		// test Jérémi Chevallier
-		// test Mialy
+/**
+ * Classe du programme principale (contient le Main).
+ * 
+ * @author Thomas SAYER
+ */
+public class Programme
+{
+	
+	/**
+	 * Methode statique s'exécutant en premier lors de l'exécution du programme.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
 	}
 
 }
