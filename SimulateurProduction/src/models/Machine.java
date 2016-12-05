@@ -7,6 +7,7 @@ import java.util.List;
  * Représente une machine de production.
  * 
  * @author Thomas SAYER
+ * @version 1.0
  */
 public class Machine
 {

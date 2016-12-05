@@ -6,6 +6,7 @@ import java.util.List;
  * Représente un atelier de machines.
  * 
  * @author Thomas SAYER
+ * @version 1.0
  */
 public class Atelier
 {
