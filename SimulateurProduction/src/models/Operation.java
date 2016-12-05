@@ -29,6 +29,13 @@ public class Operation {
 			this.type = type;
 			this.machine = machine;
 		}
+		
+		public String toString()
+		{
+			// TODO : Faire le toString().
+			
+			return "";
+		}
 }
 	
 	

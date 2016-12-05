@@ -1,77 +1,71 @@
 package models;
 
-import models.OperationRepository;
 import models.Operation;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Représente une gamme (suite d'opération memant à un produit)
- * 
- * TODO : Bug si doublons d'opération dans la liste  
+ * Représente une gamme (suite d'opération memant à un produit).
  * 
  * @author Jérémi CHEVALLIER
  * @version 1.0
  */
-
 public class Gamme
 {	
 	/**
 	 * Opération dans la gamme
 	 */
-	private List<com.sun.org.apache.xpath.internal.operations.Operation> gamme;
+	private List<Operation> phases;
 	
 	/**
 	 * Constructeur d'une liste.
 	 */
 	public Gamme(Operation valeur) 
 	{
-		this.gamme = new ArrayList<Operation>();
-		gamme.add(valeur);
+		this.phases = new LinkedList<Operation>();
+		phases.add(valeur);
 	}
 	
 	/**
-	 * Affiche la gamme
+	 * Affiche les phases.
 	 */
-	public void AfficheGamme()
+	public void afficherPhases()
 	{
-		for (int i=0; i < gamme.size(); i++){
-			System.out.println(gamme.get(i));
+		for (int i=0; i < phases.size(); i++) {
+			System.out.println(i + " - " + phases.get(i));
 		}
 	}
 	
 	/**
-	 * Ajout d'une opération à la fin de la liste
+	 * Ajout d'une opération à la fin de la liste.
 	 */
-	public void AjoutOp(Operation newOp )
+	public boolean ajoutOp(Operation newOp)
 	{
-		gamme.add(newOp)		
+		return phases.add(newOp);
 	}
 
 	/**
 	 * Ajout d'une opération à un index
 	 */
-	public void AjoutOp(Operation newOp, int index)
+	public void ajoutOp(Operation newOp, int index)
 	{
-		gamme.add(index+1, newOp);
+		phases.add(index, newOp);
 	}
 
 	/**
 	 * Supprime l'opération à l'index.
 	 */
-	public void SuppOp(int index)
+	public Operation suppOp(int index)
 	{
-		gamme.remove(index+1);
+		return phases.remove(index);
 	}
 
 	/**
 	 * Retourne l'index de l'opération
 	 */
-	public int RechercheOp(Operation searchOp )
+	public int rechercheOp(Operation searchOp)
 	{
-		return gamme.indexOf(searchOp);
+		return phases.indexOf(searchOp);
 	}
 	
 }
-
-
