@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,14 @@ public class Atelier
 	 * Machines dans l'atelier.
 	 */
 	private List<Machine> machines;
+	
+	/**
+	 * Construit un nouvel atelier vide (sans machine).
+	 */
+	public Atelier()
+	{
+		this.machines = new ArrayList<Machine>();
+	}
 	
 	/**
 	 * Construit un nouvel atelier de machines.
