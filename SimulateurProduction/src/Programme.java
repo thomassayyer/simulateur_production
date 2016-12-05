@@ -19,7 +19,7 @@ public class Programme
 	 * Atelier de machines.
 	 */
 	private Atelier atelier;
-
+	
 	/**
 	 * Méthode statique appelée en premier lors de l'exécution du programme.
 	 * 

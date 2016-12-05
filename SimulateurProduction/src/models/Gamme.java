@@ -2,31 +2,32 @@ package models;
 
 import models.OperationRepository;
 import models.Operation;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Gamme 
-{
-	private Gamme premier;
-	private Operation valeur;
-	private Gamme suivant;
+/**
+ * Représente une gamme (suite d'opération memant à un produit)
+ * 
+ * TODO : Bug si doublons d'opération dans la liste 
+ * 
+ * @author Jérémi CHEVALLIER
+ * @version 1.0
+ */
+
+public class Gamme
+{	
+	/**
+	 * Opération dans la gamme
+	 */
+	private List<com.sun.org.apache.xpath.internal.operations.Operation> gamme;
 	
 	/**
 	 * Constructeur d'une liste.
 	 */
-	public Gamme(Operation valeur, Gamme suivant) 
-	{
-		this.premier = ;
-		this.valeur = valeur;
-		this.suivant = suivant;
-	}
-	
-	/**
-	*Crée un élément de liste vide
-	*@param valeur Opération
-	*/
 	public Gamme(Operation valeur) 
 	{
-		this.valeur = valeur;
-		this.suivant = null;
+		this.gamme = new ArrayList<Operation>();
+		gamme.add(valeur);
 	}
 	
 	/**
@@ -34,66 +35,43 @@ public class Gamme
 	 */
 	public void AfficheGamme()
 	{
-		int taile = getLongeur() 
+		for (int i=0; i < gamme.size(); i++){
+			System.out.println(gamme.get(i));
+		}
 	}
 	
-	// LA SUITE DES FONCTIONS SERVENT POUR LA LISTE CHAINEE
-	// source : http://deptinfo.cnam.fr/Enseignement/CycleA/APA/nfa032/docs/cours-listes.pdf
-	
 	/**
-	 * Obtenir la valeur de la phase
-	 * @return
+	 * Ajout d'une opération à la fin de la liste
 	 */
-	public Operation getValeur() 
+	public void AjoutOp(Operation newOp )
 	{
-		return valeur;
-	}
-	
-	
-	/**
-	 * Modifie la valeur de la p
-	 */
-	public void setValeur(Operation valeur) 
-	{
-		this.valeur = valeur;
+		gamme.add(newOp)		
 	}
 
 	/**
-	 * Retourne l'élement suivant dans la liste
+	 * Ajout d'une opération à un index
 	 */
-	public Gamme getSuivant() 
+	public void AjoutOp(Operation newOp, int index)
 	{
-		return suivant;
+		gamme.add(index, newOp);
 	}
 
 	/**
-	 * Modifie l'élement suivant de la liste 
+	 * Supprime l'opération à l'index.
 	 */
-	public void setSuivant(Gamme suivant) 
+	public void SuppOp(int index)
 	{
-		this.suivant = suivant;
+		gamme.remove(index);
+	}
+
+	/**
+	 * Retourne l'index de l'opération
+	 */
+	public int RechercheOp(Operation searchOp )
+	{
+		return gamme.indexOf(searchOp);
 	}
 	
-	/**
-	 * Retourne le premier element de la liste
-	 */
-	public Gamme getPremier() {
-		return premier;
-		}
-	
-	/**
-	 * Retourne la longueur de la liste
-	 */
-	public int getLongueur() 
-	{
-		int longueur= 0;
-		Gamme ref= getPremier();
-		while (ref != null) {
-		longueur++;
-		ref= ref.getSuivant();
-		}
-		return longueur;
-		}
-
 }
+
 
