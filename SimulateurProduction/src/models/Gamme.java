@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Représente une gamme (suite d'opération memant à un produit)
  * 
- * TODO : Bug si doublons d'opération dans la liste 
+ * TODO : Bug si doublons d'opération dans la liste  
  * 
  * @author Jérémi CHEVALLIER
  * @version 1.0
