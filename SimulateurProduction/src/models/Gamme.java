@@ -53,7 +53,7 @@ public class Gamme
 	 */
 	public void AjoutOp(Operation newOp, int index)
 	{
-		gamme.add(index, newOp);
+		gamme.add(index+1, newOp);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Gamme
 	 */
 	public void SuppOp(int index)
 	{
-		gamme.remove(index);
+		gamme.remove(index+1);
 	}
 
 	/**

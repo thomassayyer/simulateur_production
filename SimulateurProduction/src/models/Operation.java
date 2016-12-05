@@ -14,9 +14,8 @@ public class Operation {
 		
 		/**
 		 * Type de l'opération (lettre, exemple : t pour tournage, f pour fraisage ...)
-		 * TODO : faire une lien avec la classe TypeMachine
 		 */
-		private char type ;
+		private char type;
 		
 		/**
 		 * Numéro de machine sur laquel l'opération est réalisée
