@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ public class Machine
 	{
 		this.num = num;
 		this.stockMax = stockMax;
-		this.stock = new ArrayList<Produit>();
+		this.stock = new LinkedList<Produit>();
 	}
 	
 	/**

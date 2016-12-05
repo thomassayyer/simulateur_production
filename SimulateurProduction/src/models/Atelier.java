@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ public class Atelier
 	 */
 	public Atelier()
 	{
-		this.machines = new ArrayList<Machine>();
+		this.machines = new LinkedList<Machine>();
 	}
 	
 	/**
