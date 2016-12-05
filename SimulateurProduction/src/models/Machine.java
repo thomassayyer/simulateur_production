@@ -67,4 +67,26 @@ public class Machine
 	{
 		// TODO
 	}
+	
+	/**
+	 * Ajoute un produit au stock.
+	 * 
+	 * @param produit Produit à ajouter.
+	 * @return Vrai si le produit a été ajouté; faux sinon.
+	 */
+	public boolean ajouterStock(Produit produit)
+	{
+		return this.stock.add(produit);
+	}
+	
+	/**
+	 * Retire un produit du stock.
+	 * 
+	 * @param produit Produit à retirer.
+	 * @return Vrai si le produit a été retiré; faux sinon.
+	 */
+	public boolean retirerStock(Produit produit)
+	{
+		return this.stock.remove(produit);
+	}
 }
