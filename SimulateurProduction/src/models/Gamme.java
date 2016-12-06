@@ -1,79 +1,71 @@
 package models;
 
-import models.OperationRepository;
 import models.Operation;
+import java.util.LinkedList;
+import java.util.List;
 
-public class Gamme 
-{
-	
-	private Operation valeur;
-	private Gamme suivant;
-	
-	public Gamme(Operation valeur, Gamme suivant) 
-	{
-		this.valeur = valeur;
-		this.suivant = suivant;
-	}
+/**
+ * Représente une gamme (suite d'opération memant à un produit).
+ * 
+ * @author Jérémi CHEVALLIER
+ * @version 1.0
+ */
+public class Gamme
+{	
+	/**
+	 * Opération dans la gamme
+	 */
+	private List<Operation> phases;
 	
 	/**
-	*Crée un élément de liste svide
-	*@param valeur Opération
-	*/
+	 * Constructeur d'une liste.
+	 */
 	public Gamme(Operation valeur) 
 	{
-		this.valeur = valeur;
-		this.suivant = null;
+		this.phases = new LinkedList<Operation>();
+		phases.add(valeur);
 	}
 	
 	/**
-	 * Affiche la gamme
+	 * Affiche les phases.
 	 */
-	public void AfficheGamme()
+	public void afficherPhases()
 	{
-		
+		for (int i=0; i < phases.size(); i++) {
+			System.out.println(i + " - " + phases.get(i));
+		}
 	}
-	
-	// LA SUITE DES FONCTIONS SERVENT POUR LA LISTE CHAINEE
-	// source : http://deptinfo.cnam.fr/Enseignement/CycleA/APA/nfa032/docs/cours-listes.pdf
 	
 	/**
-	 * Obtenir la valeur de la phase
-	 * @return
+	 * Ajout d'une opération à la fin de la liste.
 	 */
-	public Operation getValeur() 
+	public boolean ajoutOp(Operation newOp)
 	{
-		return valeur;
+		return phases.add(newOp);
+	}
+
+	/**
+	 * Ajout d'une opération à un index
+	 */
+	public void ajoutOp(Operation newOp, int index)
+	{
+		phases.add(index, newOp);
+	}
+
+	/**
+	 * Supprime l'opération à l'index.
+	 */
+	public Operation suppOp(int index)
+	{
+		return phases.remove(index);
+	}
+
+	/**
+	 * Retourne l'index de l'opération
+	 */
+	public int rechercheOp(Operation searchOp)
+	{
+		return phases.indexOf(searchOp);
 	}
 	
-	public void setValeur(Operation valeur) 
-	{
-		this.valeur = valeur;
-	}
-	
-	public Gamme getSuivant() 
-	{
-		return suivant;
-	}
-	
-	public void setSuivant(Gamme suivant) 
-	{
-		this.suivant = suivant;
-		}
-	
-	/*
-	public Gamme getPremier() {
-		return premier;
-		}
-	
-	public int getLongueur() 
-	{
-		int longueur= 0;
-		Gamme ref= getPremier();
-		while (ref != null) {
-		longueur++;
-		ref= ref.getSuivant();
-		}
-		return longueur;
-		}
-		*/
 }

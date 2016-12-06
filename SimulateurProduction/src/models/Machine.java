@@ -1,12 +1,13 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Représente une machine de production.
  * 
  * @author Thomas SAYER
+ * @version 1.0
  */
 public class Machine
 {
@@ -40,7 +41,7 @@ public class Machine
 	{
 		this.num = num;
 		this.stockMax = stockMax;
-		this.stock = new ArrayList<Produit>();
+		this.stock = new LinkedList<Produit>();
 	}
 	
 	/**
@@ -66,5 +67,27 @@ public class Machine
 	public void lancer()
 	{
 		// TODO
+	}
+	
+	/**
+	 * Ajoute un produit au stock.
+	 * 
+	 * @param produit Produit à ajouter.
+	 * @return Vrai si le produit a été ajouté; faux sinon.
+	 */
+	public boolean ajouterStock(Produit produit)
+	{
+		return this.stock.add(produit);
+	}
+	
+	/**
+	 * Retire un produit du stock.
+	 * 
+	 * @param produit Produit à retirer.
+	 * @return Vrai si le produit a été retiré; faux sinon.
+	 */
+	public boolean retirerStock(Produit produit)
+	{
+		return this.stock.remove(produit);
 	}
 }

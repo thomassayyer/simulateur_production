@@ -14,21 +14,27 @@ public class Operation {
 		
 		/**
 		 * Type de l'opération (lettre, exemple : t pour tournage, f pour fraisage ...)
-		 * TODO : faire une lien avec la classe TypeMachine
 		 */
-		private char type ;
+		private char type;
 		
 		/**
 		 * Numéro de machine sur laquel l'opération est réalisée
 		 * TODO : faire un lien avec la classe Machine
 		 */
-		private int numMachine;
+		private Machine machine;
 		
-		public Operation(int num, char type, int numMachine)
+		public Operation(int num, char type, Machine machine)
 		{
 			this.num = num;
 			this.type = type;
-			this.numMachine = numMachine;
+			this.machine = machine;
+		}
+		
+		public String toString()
+		{
+			// TODO : Faire le toString().
+			
+			return "";
 		}
 }
 	
