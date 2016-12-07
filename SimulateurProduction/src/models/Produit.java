@@ -12,5 +12,4 @@ public class Produit {
 		this.type = type;
 		this.duree = duree;
 	}
-
 }
