@@ -1,5 +1,6 @@
 package repositories;
 
+import models.Machine;
 import models.Operation;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,16 @@ public class OperationRepository {
 	 * Ajoute une nouvelle opération dans la liste
 	 * @param newOp, nouvelle opération.
 	 */
-	public void AjoutOp(Operation newOp )
+	public void AjoutOp(Operation newOp ) throws Exception
 	{
-		listOp.add(newOp);		
+		for (Operation p : listOp)
+		{
+			if (p.getNum() == newOp.getNum())
+			{
+				throw new Exception("Une opération porte déjà ce numéro.");
+			}
+		}
+		listOp.add(newOp);
 	}
 	
 	/**

@@ -32,11 +32,9 @@ public class Operation {
 			this.numMachine = numMachine;
 		}
 		
-		public String toString()
+		public int getNum()
 		{
-			// TODO : Faire le toString().
-			
-			return "";
+			return this.num;
 		}
 }
 	
