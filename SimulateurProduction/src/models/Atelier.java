@@ -40,8 +40,16 @@ public class Atelier
 	 * @param machine Machine à ajouter.
 	 * @return Vrai si la machine a bien été ajoutée; faux sinon.
 	 */
-	public boolean ajouterMachine(Machine machine)
+	public boolean ajouterMachine(Machine machine) throws Exception
 	{
+		for (Machine m : this.machines)
+		{
+			if (m.getNum() == machine.getNum())
+			{
+				throw new Exception("Une machine porte déjà ce numéro.");
+			}
+		}
+		
 		return this.machines.add(machine);
 	}
 	
