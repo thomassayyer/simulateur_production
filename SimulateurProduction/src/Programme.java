@@ -33,19 +33,48 @@ public class Programme
 	 */
 	private static Atelier atelier = new Atelier();
 	
+	private static boolean creerTypeMachine()
+	{
+		System.out.print("Numéro : ");
+		int num = sc.nextInt();
+			
+		System.out.print("\nLibellé : ");
+		String libelle = sc.next();
+			
+		System.out.println();
+			
+		TypeMachine type = new TypeMachine(num, libelle);
+			
+		try
+		{
+			typesMachine.ajouterTypeMachine(type);
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+			return true;
+		}
+			
+		System.out.println("Type de machine créé.");
+		
+		System.out.println("Nouveau type de machine ?");
+		System.out.println("1 - Oui");
+		System.out.println("0 - Non");
+
+		return sc.nextInt() == 1 ? true : false;
+	}
+	
 	/**
 	 * Effectue les opérations de l'IHM permettant de créer une machine.
 	 * 
 	 * @return Vrai si l'utilisateur veut recréer une machine; faux sinon.
 	 */
-	private static boolean creerMachine()
+	private static boolean creerMachines()
 	{
 		System.out.print("Numéro : ");
 		int num = sc.nextInt();
 			
-		System.out.println();
-			
-		System.out.print("Stock max : ");
+		System.out.print("\nStock max : ");
 		int stockMax = sc.nextInt();
 			
 		System.out.println();
@@ -95,23 +124,23 @@ public class Programme
 	 */
 	public static void main(String[] args)
 	{
-		// TODO Création des types de machines
+		System.out.println("Création de types de machine : ");
 		
-		System.out.println("Créer machine ?");
-		System.out.println("1 - Oui");
-		System.out.println("0 - Non");
+		boolean nouveauType;
 		
-		int choix = sc.nextInt();
-		
-		if (choix == 1)
+		do
 		{
-			boolean nouvelleMachine;
+			nouveauType = creerTypeMachine();
+		} while (nouveauType);
+		
+		System.out.println("Création de machines : ");
+		
+		boolean nouvelleMachine;
 			
-			do
-			{
-				nouvelleMachine = creerMachine();
-			} while (nouvelleMachine);
-		}
+		do
+		{
+			nouvelleMachine = creerMachines();
+		} while (nouvelleMachine);
 		
 		// TODO Création des opérations.
 		
