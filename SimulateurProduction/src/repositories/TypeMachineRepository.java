@@ -12,7 +12,7 @@ import models.TypeMachine;
  * @author Thomas SAYER
  * @version 1.0
  */
-public class TypeMachineRepository {
+public class TypeMachineRepository { 
 	
 	/**
 	 * Types de machines créés.
