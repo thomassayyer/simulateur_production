@@ -1,5 +1,7 @@
 package models;
 
+import models.Machine;
+
 /**
  * Représente une opération.
  * 
@@ -21,13 +23,13 @@ public class Operation {
 		 * Numéro de machine sur laquel l'opération est réalisée
 		 * TODO : faire un lien avec la classe Machine
 		 */
-		private Machine machine;
+		private int numMachine;
 		
-		public Operation(int num, char type, Machine machine)
+		public Operation(int num, char type, int numMachine)
 		{
 			this.num = num;
 			this.type = type;
-			this.machine = machine;
+			this.numMachine = numMachine;
 		}
 		
 		public String toString()

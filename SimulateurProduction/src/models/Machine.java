@@ -93,4 +93,12 @@ public class Machine
 	{
 		return this.stock.remove(produit);
 	}
+	
+	/**
+	 * Retourne le numéro de la machine
+	 * @return le numéro de la machine
+	 */
+	public int getNum(){
+		return this.num;
+	}
 }
