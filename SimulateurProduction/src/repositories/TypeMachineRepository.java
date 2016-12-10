@@ -2,6 +2,8 @@ package repositories;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import models.Machine;
 import models.TypeMachine;
 
 /**
@@ -10,7 +12,7 @@ import models.TypeMachine;
  * @author Thomas SAYER
  * @version 1.0
  */
-public class TypeMachineRepository {
+public class TypeMachineRepository { 
 	
 	/**
 	 * Types de machines créés.
@@ -25,6 +27,17 @@ public class TypeMachineRepository {
 		this.types = new LinkedList<TypeMachine>();
 	}
 	
+	/**
+	 * Ajoute un type de machine
+	 * 
+	 * @param typeMachine TypeMachine à ajouter
+	 * @return Vrai si le type de machine a bien été créé; faux sinon.
+	 */
+	public boolean ajouterTypeMachine(TypeMachine typeMachine)
+	{		
+		return this.types.add(typeMachine);
+	}
+
 	/**
 	 * Retourne tous les types de machine créés.
 	 * 
