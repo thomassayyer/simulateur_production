@@ -25,4 +25,25 @@ public class TypeMachineRepository {
 		this.types = new LinkedList<TypeMachine>();
 	}
 	
+	/**
+	 * Retourne tous les types de machine créés.
+	 * 
+	 * @return Types de machine créés.
+	 */
+	public List<TypeMachine> getTypes()
+	{
+		return this.types;
+	}
+	
+	/**
+	 * Retourne un type de machine à l'indice en paramètre.
+	 * 
+	 * @param index Indice du type de machine à récupérer.
+	 * @return Type de machine à l'indice en paramètre.
+	 */
+	public TypeMachine recuperer(int index)
+	{
+		return this.types.get(index);
+	}
+	
 }
