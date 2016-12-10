@@ -1,12 +1,19 @@
 package models;
 
 /**
- * Enumération des type de machine disponibles.
+ * Représente un type de machine.
  * 
  * @author Thomas SAYER
  * @version 1.0
  */
-public enum TypeMachine
+public class TypeMachine
 {
-	FRAISEUSE;
+	private int num;
+	private String libelle;
+	
+	public TypeMachine(int num, String libelle)
+	{
+		this.num = num;
+		this.libelle = libelle;
+	}
 }
