@@ -3,6 +3,7 @@ package repositories;
 import java.util.LinkedList;
 import java.util.List;
 
+import models.Gamme;
 import models.Produit;
 
 /**
@@ -47,9 +48,16 @@ public class ProduitRepository
 	 * @param p Produit à ajouter.
 	 * @return Vrai si le produit a été ajouté; faux sinon.
 	 */
-	public boolean ajouterProduit(Produit p)
+	public boolean ajouterProduit(Produit produit) throws Exception
 	{
-		return this.produits.add(p);
+		for (Produit p : produits)
+		{
+			if (p.getId() == produit.getId())
+			{
+				throw new Exception("Un Produit porte déjà cet identifiant.");
+			}
+		}
+		return this.produits.add(produit);
 	}
 	
 	/**

@@ -23,13 +23,13 @@ public class Operation {
 		 * Numéro de machine sur laquel l'opération est réalisée
 		 * TODO : faire un lien avec la classe Machine
 		 */
-		private int numMachine;
+		private Machine machine;
 		
-		public Operation(int num, char type, int numMachine)
+		public Operation(int num, char type, Machine machine)
 		{
 			this.num = num;
 			this.type = type;
-			this.numMachine = numMachine;
+			this.machine = machine;
 		}
 		
 		public int getNum()

@@ -73,4 +73,18 @@ public class Atelier
 	{
 		return this.machines;
 	}
+	
+	public Machine getMachine(int numero)
+	{
+		for (Machine m : this.machines)
+		{
+			if (m.getNum() == numero)
+			{
+				return m;
+			}
+		}
+		
+		return null;
+	}
+	
 }

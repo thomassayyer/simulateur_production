@@ -1,17 +1,23 @@
 package models;
 
+import java.util.HashMap;
+
 public class Produit {
 	
 	private int id;
 	private String type;
-	private double duree;
 	private Gamme gamme;
+	//private HashMap<Machine, double> durees;
 	
-	public Produit(int id, String type, double duree, Gamme gamme)
+	public Produit(int id, String type, Gamme gamme)
 	{
 		this.id = id;
 		this.type = type;
-		this.duree = duree;
 		this.gamme = gamme;
 	}
+	
+	public int getId(){
+		return this.id;
+	}
+	
 }

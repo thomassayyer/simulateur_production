@@ -26,19 +26,18 @@ public class Prog2 {
 		char type = sc.next().charAt(0);
 		
 		System.out.println();
-		
-		int i = 1;
+
 		for ( Machine m : atelier.getMachines() )
 		{
-			System.out.println(i + " - " + m);
-			i++;
+			System.out.println(m);
 		}
 		System.out.println("Numéro de machine : ");
 		int numMachine = sc.nextInt();
+		Machine machine = atelier.getMachine(numMachine);
 		
 		try
 		{
-			operations.AjoutOp(new Operation(num, type, numMachine));
+			operations.AjoutOp(new Operation(num, type, machine));
 		}
 		catch (Exception e)
 		{
@@ -102,17 +101,9 @@ public class Prog2 {
 	}
 		
 	private static boolean creerProduit()
-	{	
-		// TODO : Calculer la durée 
-		// Solution pour le moment : la rentré manuellement
-		System.out.print("Durée : ");
-		double durée = sc.nextDouble();
-		
-		System.out.println();
-		
-		
-		System.out.print("Numéro : ");
-		int num = sc.nextInt();
+	{			
+		System.out.print("ID : ");
+		int id = sc.nextInt();
 		
 		System.out.println();
 		
@@ -122,17 +113,14 @@ public class Prog2 {
 		System.out.println();
 		
 		int i = 1;
-		for ( Gamme g : () )
-		{
-			System.out.println(i + " - " + g);
-			i++;
-		}
+		gammes.AfficheGamme();
 		System.out.println("Numéro de Gamme : ");
 		int numGamme = sc.nextInt();
+		Gamme gamme = listGamme.getGamme(numGamme);
 		
 		try
 		{
-			operations.AjoutOp(new Operation(num, type, numMachine));
+			operations.ajouterProduit(new Produit(id, type, duree, gamme));
 		}
 		catch (Exception e)
 		{
