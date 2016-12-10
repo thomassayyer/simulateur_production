@@ -33,6 +33,12 @@ public class Programme
 	 */
 	private static Atelier atelier = new Atelier();
 	
+	/**
+	 * Effectue les opérations de l'IHM permettant de créer un type de machine.
+	 * 
+	 * @return Vrai si l'utilisateur veut recréer un type de machine supplémentaire;
+	 * 		   faux sinon.
+	 */
 	private static boolean creerTypeMachine()
 	{
 		System.out.print("Numéro : ");
@@ -67,7 +73,8 @@ public class Programme
 	/**
 	 * Effectue les opérations de l'IHM permettant de créer une machine.
 	 * 
-	 * @return Vrai si l'utilisateur veut recréer une machine; faux sinon.
+	 * @return Vrai si l'utilisateur veut recréer une / des machine(s) supplémentaire;
+	 *         faux sinon.
 	 */
 	private static boolean creerMachines()
 	{
@@ -136,7 +143,7 @@ public class Programme
 		System.out.println("Création de machines : ");
 		
 		boolean nouvelleMachine;
-			
+
 		do
 		{
 			nouvelleMachine = creerMachines();
