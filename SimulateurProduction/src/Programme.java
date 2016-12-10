@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import models.*;
+import repositories.OperationRepository;
 
 /**
  * Programme principal.
@@ -20,7 +21,7 @@ public class Programme
 	/**
 	 * Entrepot d'opérations.
 	 */
-	private static OperationRepository operations;
+	private static OperationRepository operations = new OperationRepository();
 	
 	/**
 	 * Atelier de machines.

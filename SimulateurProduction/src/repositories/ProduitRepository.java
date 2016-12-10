@@ -1,7 +1,9 @@
-package models;
+package repositories;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import models.Produit;
 
 /**
  * Stock une liste de produits disponibles.

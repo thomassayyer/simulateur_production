@@ -1,4 +1,4 @@
-package models;
+package repositories;
 
 import models.Operation;
 import java.util.ArrayList;
@@ -20,9 +20,6 @@ public class OperationRepository {
 		listOp.add(newOp);		
 	}
 	
-	
-	
-	
 	/**
 	 * Affiche la liste des opération
 	 */
@@ -43,6 +40,5 @@ public class OperationRepository {
 	{
 		return listOp.get(index);
 	}
-
 	
 }

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import models.*;
+import repositories.*;
 
 public class Prog2 {
 
