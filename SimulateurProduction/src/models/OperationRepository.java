@@ -20,6 +20,9 @@ public class OperationRepository {
 		listOp.add(newOp);		
 	}
 	
+	
+	
+	
 	/**
 	 * Affiche la liste des opération
 	 */
@@ -40,5 +43,6 @@ public class OperationRepository {
 	{
 		return listOp.get(index);
 	}
+
 	
 }
