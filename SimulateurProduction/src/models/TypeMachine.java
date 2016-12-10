@@ -8,9 +8,23 @@ package models;
  */
 public class TypeMachine
 {
+	/**
+	 * Numéro unique représentant le type de machine.
+	 */
 	private int num;
+	
+	/**
+	 * Libellé du type de machine.
+	 */
 	private String libelle;
 	
+	/**
+	 * Constructeur paramétré dont on spécifie le numéro et le libellé du type de
+	 * machine.
+	 * 
+	 * @param num Numéro du type de machine.
+	 * @param libelle Libellé du type de machine.
+	 */
 	public TypeMachine(int num, String libelle)
 	{
 		this.num = num;
