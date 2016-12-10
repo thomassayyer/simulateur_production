@@ -63,4 +63,14 @@ public class Atelier
 	{
 		return this.machines.remove(machine);
 	}
+	
+	/**
+	 * Retourne la liste des machines présentes dans l'atelier.
+	 * 
+	 * @return Liste des machines présentes dans l'atelier.
+	 */
+	public List<Machine> getMachines()
+	{
+		return this.machines;
+	}
 }
