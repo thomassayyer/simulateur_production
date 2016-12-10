@@ -2,8 +2,6 @@ package repositories;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import models.Machine;
 import models.TypeMachine;
 
 /**
