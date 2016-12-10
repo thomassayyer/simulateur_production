@@ -36,11 +36,13 @@ public class Machine
 	 * 
 	 * @param num Numéro unique de la machine.
 	 * @param stockMax Nombre de produits au maximum dans le stock.
+	 * @param type Type de la machine.
 	 */
-	public Machine(int num, int stockMax)
+	public Machine(int num, int stockMax, TypeMachine type)
 	{
 		this.num = num;
 		this.stockMax = stockMax;
+		this.type = type;
 		this.stock = new LinkedList<Produit>();
 	}
 	
@@ -49,11 +51,12 @@ public class Machine
 	 * 
 	 * @param num Numéro unique de la machine.
 	 * @param stockMax Nombre de produits au maximum dans le stock.
+	 * @param type Type de la machine.
 	 * @param stock Stock de produit.
 	 */
-	public Machine(int num, int stockMax, List<Produit> stock)
-	{
-		this(num, stockMax);
+	public Machine(int num, int stockMax, TypeMachine type, List<Produit> stock)
+	{	
+		this(num, stockMax, type);
 		
 		for (Produit produit : stock)
 		{
