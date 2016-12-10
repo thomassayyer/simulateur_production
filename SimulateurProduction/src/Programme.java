@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 import models.*;
-import repositories.OperationRepository;
+import repositories.*;
 
 /**
  * Programme principal.
@@ -19,9 +19,14 @@ public class Programme
 	private static Scanner sc = new Scanner(System.in);
 	
 	/**
-	 * Entrepot d'opérations.
+	 * Entrepôt d'opérations.
 	 */
 	private static OperationRepository operations = new OperationRepository();
+	
+	/**
+	 * Entrepôt de types de machine.
+	 */
+	private static TypeMachineRepository typesMachine = new TypeMachineRepository();
 	
 	/**
 	 * Atelier de machines.
@@ -48,13 +53,13 @@ public class Programme
 			System.out.println("Type : ");
 			
 			int i = 1;
-			for (TypeMachine t : TypeMachine.values())
+			for (TypeMachine t : typesMachine.getTypes())
 			{
 				System.out.println(i + " - " + t);
 				i++;
 			}
 			
-			TypeMachine type = TypeMachine.values()[sc.nextInt() - 1];
+			TypeMachine type = typesMachine.recuperer(sc.nextInt() - 1);
 			
 			try
 			{
