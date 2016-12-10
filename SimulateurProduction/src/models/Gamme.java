@@ -17,13 +17,16 @@ public class Gamme
 	 */
 	private List<Operation> phases;
 	
+	private int num;
+	
+	
 	/**
 	 * Constructeur d'une liste.
 	 */
-	public Gamme(Operation valeur) 
+	public Gamme(int num) 
 	{
 		this.phases = new LinkedList<Operation>();
-		phases.add(valeur);
+		this.num = num;
 	}
 	
 	/**
@@ -66,6 +69,10 @@ public class Gamme
 	public int rechercheOp(Operation searchOp)
 	{
 		return phases.indexOf(searchOp);
+	}
+	
+	public int getNum(){
+		return this.num;
 	}
 	
 }

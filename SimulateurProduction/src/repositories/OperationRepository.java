@@ -35,7 +35,7 @@ public class OperationRepository {
 	{	
 		for (int i=0 ; i<listOp.size(); i++ )
 		{
-			System.out.println(listOp.get(i));
+			System.out.println( i + " - " + listOp.get(i));
 		}
 	}
 	
