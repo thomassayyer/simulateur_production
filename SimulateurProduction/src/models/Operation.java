@@ -36,6 +36,23 @@ public class Operation {
 		{
 			return this.num;
 		}
+		
+		public Machine getMachine()
+		{
+			return this.machine;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return this.num + " - " + this.type;
+		}
+		
+		@Override
+		public boolean equals(Object o)
+		{
+			return this.num == ((Operation)o).getNum();
+		}
 }
 	
 	

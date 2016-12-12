@@ -10,51 +10,24 @@ import models.TypeMachine;
  * @author Thomas SAYER
  * @version 1.0
  */
-public class TypeMachineRepository { 
+public class TypeMachineRepository extends Repository<TypeMachine> {
 	
 	/**
-	 * Types de machines créés.
-	 */
-	private List<TypeMachine> types;
-	
-	/**
-	 * Constructeur non paramétré qui instancie la liste chaînée des types de machine.
-	 */
-	public TypeMachineRepository()
-	{
-		this.types = new LinkedList<TypeMachine>();
-	}
-	
-	/**
-	 * Ajoute un type de machine
+	 * Retourne le type de machine de numéro en paramètre.
 	 * 
-	 * @param typeMachine TypeMachine à ajouter
-	 * @return Vrai si le type de machine a bien été créé; faux sinon.
+	 * @param num Numéro du type de machine à récupérer.
+	 * @return Type de machine ayant le numéro en paramètre.
 	 */
-	public boolean ajouterTypeMachine(TypeMachine typeMachine)
-	{		
-		return this.types.add(typeMachine);
-	}
-
-	/**
-	 * Retourne tous les types de machine créés.
-	 * 
-	 * @return Types de machine créés.
-	 */
-	public List<TypeMachine> getTypes()
+	public TypeMachine getType(int num)
 	{
-		return this.types;
+		for (TypeMachine t : this.list)
+		{
+			if (t.getNum() == num)
+			{
+				return t;
+			}
+		}
+		
+		return null;
 	}
-	
-	/**
-	 * Retourne un type de machine à l'indice en paramètre.
-	 * 
-	 * @param index Indice du type de machine à récupérer.
-	 * @return Type de machine à l'indice en paramètre.
-	 */
-	public TypeMachine recuperer(int index)
-	{
-		return this.types.get(index);
-	}
-	
 }

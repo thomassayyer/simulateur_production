@@ -95,10 +95,24 @@ public class Machine
 	}
 	
 	/**
-	 * Retourne le numéro de la machine
-	 * @return le numéro de la machine
+	 * Retourne le numéro de la machine.
+	 * 
+	 * @return Numéro de la machine.
 	 */
-	public int getNum(){
+	public int getNum()
+	{
 		return this.num;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.num + " - " + this.type.getLibelle();
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return this.num == ((Machine)o).getNum();
 	}
 }

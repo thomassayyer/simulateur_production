@@ -5,48 +5,31 @@ import models.Operation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperationRepository {
-
+/**
+ * Entrepôt d'opérations.
+ * 
+ * @author Jérémi Chevallier
+ * @version 1.0
+ */
+public class OperationRepository extends Repository<Operation>
+{
 	/**
-	 * Tableau des opérations
+	 * Permet de récupérer l'opération correspondante au numéro en paramètre.
+	 * 
+	 * @param num Numéro de l'opération à récupérer.
+	 * @return Opération correspondante au numéro en paramètre..
 	 */
-	private List<Operation> listOp;
-	
-	/**
-	 * Ajoute une nouvelle opération dans la liste
-	 * @param newOp, nouvelle opération.
-	 */
-	public void AjoutOp(Operation newOp ) throws Exception
+	public Operation getOp(int num)
 	{
-		for (Operation p : listOp)
+		for (Operation o : this.list)
 		{
-			if (p.getNum() == newOp.getNum())
+			if (o.getNum() == num)
 			{
-				throw new Exception("Une opération porte déjà ce numéro.");
+				return o;
 			}
 		}
-		listOp.add(newOp);
-	}
-	
-	/**
-	 * Affiche la liste des opération
-	 */
-	public void AfficheOp()
-	{	
-		for (int i=0 ; i<listOp.size(); i++ )
-		{
-			System.out.println( i + " - " + listOp.get(i));
-		}
-	}
-	
-	/**
-	 * Getter pour la liste des opérations
-	 * @param index
-	 * @return l'opération à l'index choisie
-	 */
-	public Operation getOp(int index)
-	{
-		return listOp.get(index);
+		
+		return null;
 	}
 	
 }

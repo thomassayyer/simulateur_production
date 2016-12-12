@@ -4,47 +4,30 @@ import java.util.List;
 
 import models.Gamme;
 
-public class GammeRepository {
-	
+/**
+ * Représente un entrepôt de gammes.
+ * 
+ * @author Jérémi Chevallier.
+ * @version 2.0
+ */
+public class GammeRepository extends Repository<Gamme>
+{
 	/**
-	 * Tableau des gamme
+	 * Récupère la gamme correspondante au numéro en paramètre.
+	 * 
+	 * @param num Numéro de la gamme à récupérer.
+	 * @return La gamme correspondante au numéro en paramètre.
 	 */
-	private List<Gamme> listGamme;
-	
-	/**
-	 * Ajoute une nouvelle gamme dans la liste
-	 * @param newGamme, nouvelle gamme.
-	 */
-	public void AjoutGamme(Gamme gamme ) throws Exception
+	public Gamme getGamme(int num)
 	{
-		for (Gamme g : listGamme)
+		for (Gamme g : this.list)
 		{
-			if (g.getNum() == gamme.getNum())
+			if (g.getNum() == num)
 			{
-				throw new Exception("Une gamme porte déjà ce numéro.");
+				return g;
 			}
 		}
-		listGamme.add(gamme);
-	}
-	
-	/**
-	 * Affiche la liste des gammes
-	 */
-	public void AfficheGamme()
-	{	
-		for (int i=0 ; i<listGamme.size(); i++ )
-		{
-			System.out.println( i + " - " + listGamme.get(i));
-		}
-	}
-	
-	/**
-	 * Getter pour la liste des opérations
-	 * @param index
-	 * @return la gamme à l'index choisie
-	 */
-	public Gamme getGamme(int index)
-	{
-		return listGamme.get(index);
+		
+		return null;
 	}
 }

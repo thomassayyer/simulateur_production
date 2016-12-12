@@ -30,4 +30,30 @@ public class TypeMachine
 		this.num = num;
 		this.libelle = libelle;
 	}
+	
+	/**
+	 * Retourne le numéro du type de machine.
+	 * 
+	 * @return Numéro du type de machine.
+	 */
+	public int getNum()
+	{
+		return this.num;
+	}
+	
+	/**
+	 * Retourne le libellé du type de machine.
+	 * 
+	 * @return Libellé du type de machine.
+	 */
+	public String getLibelle()
+	{
+		return this.libelle;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.num + " - " + this.libelle;
+	}
 }
