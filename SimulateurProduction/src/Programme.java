@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
+import auxiliary.comparators.MachinesTempsComparator;
 import models.*;
 import repositories.*;
 
@@ -295,36 +296,21 @@ public class Programme
 	
 	private static void repartirProduits()
 	{
-		int i;
-		
 		for (Gamme gamme : gammes.getGammes())
 		{
-			i = 0;
+			List<Produit> prods = produits.getProduitsByGamme(gamme);
 			
-			Phase phase = gamme.getPhase(0);
+			// Tous les produits de la gamme en sont à la même phase.
+			Phase phase = prods.get(0).getPhaseCourante();
+
 			TypeMachine type = phase.getOperation().getTypeMachine();
 			
-			List<Produit> produits = Programme.produits.getProduitsByGamme(gamme);
+			List<Machine> machines = atelier.getMachinesByType(type);
 			
-			while (produits.size() != 0)
+			for (Produit produit : produits.getProduitsByGamme(gamme))
 			{
-				for (Machine m : atelier.getMachinesByType(type))
-				{
-					if ((produits.size() - 1) >= i)
-					{
-						produits.get(i).setPhaseCourante(phase);
-
-						m.ajouterStock(produits.get(i));
-
-						produits.remove(i);
-					}
-					else
-					{
-						break;
-					}
-
-					i++;
-				}
+				machines.sort(new MachinesTempsComparator());
+				atelier.getMachinesByType(type).get(0).ajouterStock(produit);
 			}
 		}
 	}
@@ -381,8 +367,10 @@ public class Programme
 			nouveauProduit = creerProduit();
 		} while (nouveauProduit);
 		
-		repartirProduits();
-		
-		// TODO Lancement de la simulation.
+		do
+		{
+			repartirProduits();
+			atelier.lancerSimulation();
+		} while (atelier.hasMachinesAvecStock());
 	}
 }

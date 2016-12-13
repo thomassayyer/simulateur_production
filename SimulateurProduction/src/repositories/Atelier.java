@@ -3,6 +3,7 @@ package repositories;
 import java.util.LinkedList;
 import java.util.List;
 
+import auxiliary.comparators.MachinesTempsComparator;
 import models.Gamme;
 import models.Machine;
 import models.Phase;
@@ -65,20 +66,20 @@ public class Atelier extends Repository<Machine>
 	{
 		for (Machine m : this.list)
 		{
-			if (m.hasStock())
+			m.lancerSimulation();
+		}
+	}
+	
+	public boolean hasMachinesAvecStock()
+	{
+		for (Machine m : this.list)
+		{
+			if (m.getStockSize() > 0)
 			{
-				Produit produit = m.getProduit(0);
-				
-				Phase phase = produit.getPhaseCourante();
-				
-				m.ajouterTemps(phase.getDuree());
-				
-				Gamme gamme = produit.getGamme();
-				
-				int indexPhaseCourante = gamme.getPosPhase(phase);
-				
-				produit.setPhaseCourante(gamme.getPhase(indexPhaseCourante + 1));
+				return true;
 			}
 		}
+		
+		return false;
 	}
 }

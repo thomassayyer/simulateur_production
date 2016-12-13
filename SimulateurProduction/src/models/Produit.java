@@ -15,6 +15,7 @@ public class Produit {
 		this.id = id;
 		this.type = type;
 		this.gamme = gamme;
+		this.phaseCourante = this.gamme.getPhase(0);
 	}
 	
 	public void setPhaseCourante(Phase p)

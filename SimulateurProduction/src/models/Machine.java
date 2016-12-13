@@ -26,6 +26,8 @@ public class Machine
 	 */
 	private List<Produit> stock;
 	
+	private List<Produit> produitsFinis;
+	
 	private double temps;
 	
 	/**
@@ -40,6 +42,7 @@ public class Machine
 		this.type = type;
 		this.temps = 0;
 		this.stock = new LinkedList<Produit>();
+		this.produitsFinis = new LinkedList<Produit>();
 	}
 	
 	/**
@@ -79,19 +82,39 @@ public class Machine
 		return this.type;
 	}
 	
-	public void ajouterTemps(double t)
+	public double getTemps()
 	{
-		this.temps += t;
-	}
-	
-	public boolean hasStock()
-	{
-		return this.stock.size() > 0;
+		return this.temps;
 	}
 	
 	public Produit getProduit(int i)
 	{
 		return this.stock.get(i);
+	}
+	
+	public void lancerSimulation()
+	{
+		for (Produit produit : this.stock)
+		{
+			Phase phase = produit.getPhaseCourante();
+				
+			this.temps += phase.getDuree();
+				
+			Gamme gamme = produit.getGamme();
+				
+			int indexPhaseCourante = gamme.getPosPhase(phase);
+				
+			produit.setPhaseCourante(gamme.getPhase(indexPhaseCourante + 1));
+			
+			this.retirerStock(produit);
+			
+			this.produitsFinis.add(produit);
+		}
+	}
+	
+	public int getStockSize()
+	{
+		return this.stock.size();
 	}
 	
 	@Override
