@@ -17,11 +17,6 @@ public class Machine
 	private int num;
 	
 	/**
-	 * Nombre de produit maximum en attente dans le stock de la machine.
-	 */
-	private int stockMax;
-	
-	/**
 	 * Type de la machine (fraiseuse, ...).
 	 */
 	private TypeMachine type;
@@ -31,45 +26,20 @@ public class Machine
 	 */
 	private List<Produit> stock;
 	
+	private double temps;
+	
 	/**
 	 * Construit une nouvelle machine avec stock vide.
 	 * 
 	 * @param num Numéro unique de la machine.
-	 * @param stockMax Nombre de produits au maximum dans le stock.
 	 * @param type Type de la machine.
 	 */
-	public Machine(int num, int stockMax, TypeMachine type)
+	public Machine(int num, TypeMachine type)
 	{
 		this.num = num;
-		this.stockMax = stockMax;
 		this.type = type;
+		this.temps = 0;
 		this.stock = new LinkedList<Produit>();
-	}
-	
-	/**
-	 * Construit une nouvelle machine avec un stock de produit.
-	 * 
-	 * @param num Numéro unique de la machine.
-	 * @param stockMax Nombre de produits au maximum dans le stock.
-	 * @param type Type de la machine.
-	 * @param stock Stock de produit.
-	 */
-	public Machine(int num, int stockMax, TypeMachine type, List<Produit> stock)
-	{	
-		this(num, stockMax, type);
-		
-		for (Produit produit : stock)
-		{
-			this.stock.add(produit);
-		}
-	}
-	
-	/**
-	 * Lance la simulation de production des produits dans le stock.
-	 */
-	public void lancer()
-	{
-		// TODO
 	}
 	
 	/**
@@ -102,6 +72,26 @@ public class Machine
 	public int getNum()
 	{
 		return this.num;
+	}
+	
+	public TypeMachine getType()
+	{
+		return this.type;
+	}
+	
+	public void ajouterTemps(double t)
+	{
+		this.temps += t;
+	}
+	
+	public boolean hasStock()
+	{
+		return this.stock.size() > 0;
+	}
+	
+	public Produit getProduit(int i)
+	{
+		return this.stock.get(i);
 	}
 	
 	@Override

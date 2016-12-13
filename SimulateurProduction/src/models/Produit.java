@@ -1,13 +1,14 @@
 package models;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Produit {
 	
 	private int id;
 	private String type;
 	private Gamme gamme;
-	private HashMap<Machine, Double> durees;
+	private Phase phaseCourante;
 	
 	public Produit(int id, String type, Gamme gamme)
 	{
@@ -16,13 +17,23 @@ public class Produit {
 		this.gamme = gamme;
 	}
 	
+	public void setPhaseCourante(Phase p)
+	{
+		this.phaseCourante = p;
+	}
+	
+	public Phase getPhaseCourante()
+	{
+		return this.phaseCourante;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
 	
-	public void ajouterDuree(Machine m, Double d)
+	public Gamme getGamme()
 	{
-		this.durees.put(m, d);
+		return this.gamme;
 	}
 	
 	@Override

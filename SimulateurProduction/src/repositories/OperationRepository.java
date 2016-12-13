@@ -12,7 +12,17 @@ import java.util.List;
  * @version 1.0
  */
 public class OperationRepository extends Repository<Operation>
-{
+{	
+	public static OperationRepository getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new OperationRepository();
+		}
+		
+		return (OperationRepository)instance;
+	}
+	
 	/**
 	 * Permet de récupérer l'opération correspondante au numéro en paramètre.
 	 * 

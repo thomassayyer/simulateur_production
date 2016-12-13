@@ -10,7 +10,17 @@ import models.TypeMachine;
  * @author Thomas SAYER
  * @version 1.0
  */
-public class TypeMachineRepository extends Repository<TypeMachine> {
+public class TypeMachineRepository extends Repository<TypeMachine>
+{	
+	public static TypeMachineRepository getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new TypeMachineRepository();
+		}
+		
+		return (TypeMachineRepository)instance;
+	}
 	
 	/**
 	 * Retourne le type de machine de numéro en paramètre.

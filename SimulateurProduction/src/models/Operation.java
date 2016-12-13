@@ -23,13 +23,13 @@ public class Operation {
 		 * Numéro de machine sur laquel l'opération est réalisée
 		 * TODO : faire un lien avec la classe Machine
 		 */
-		private Machine machine;
+		private TypeMachine typeMachine;
 		
-		public Operation(int num, char type, Machine machine)
+		public Operation(int num, char type, TypeMachine typeMachine)
 		{
 			this.num = num;
 			this.type = type;
-			this.machine = machine;
+			this.typeMachine = typeMachine;
 		}
 		
 		public int getNum()
@@ -37,9 +37,9 @@ public class Operation {
 			return this.num;
 		}
 		
-		public Machine getMachine()
+		public TypeMachine getTypeMachine()
 		{
-			return this.machine;
+			return this.typeMachine;
 		}
 		
 		@Override

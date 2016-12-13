@@ -1,5 +1,9 @@
 package models;
 
+import java.util.List;
+
+import repositories.Atelier;
+
 /**
  * Représente un type de machine.
  * 
@@ -55,5 +59,11 @@ public class TypeMachine
 	public String toString()
 	{
 		return this.num + " - " + this.libelle;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return this.num == ((TypeMachine)o).getNum();
 	}
 }

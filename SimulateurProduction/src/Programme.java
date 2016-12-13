@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 import models.*;
@@ -21,27 +22,27 @@ public class Programme
 	/**
 	 * Entrepôt d'opérations.
 	 */
-	private static OperationRepository operations = new OperationRepository();
+	private static OperationRepository operations = OperationRepository.getInstance();
 	
 	/**
 	 * Entrepôt de types de machine.
 	 */
-	private static TypeMachineRepository typesMachine = new TypeMachineRepository();
+	private static TypeMachineRepository typesMachine = TypeMachineRepository.getInstance();
 	
 	/**
 	 * Entrepôt de gammes.
 	 */
-	private static GammeRepository gammes = new GammeRepository();
+	private static GammeRepository gammes = GammeRepository.getInstance();
 	
 	/**
 	 * Entrepôt de produits.
 	 */
-	private static ProduitRepository produits = new ProduitRepository();
+	private static ProduitRepository produits = ProduitRepository.getInstance();
 	
 	/**
 	 * Atelier de machines.
 	 */
-	private static Atelier atelier = new Atelier();
+	private static Atelier atelier = Atelier.getInstance();
 	
 	/**
 	 * Effectue les opérations de l'IHM permettant de créer un type de machine.
@@ -51,10 +52,10 @@ public class Programme
 	 */
 	private static boolean creerTypeMachine()
 	{
-		System.out.print("Numéro : ");
+		System.out.print("\nNuméro : ");
 		int num = sc.nextInt();
 			
-		System.out.print("\nLibellé : ");
+		System.out.print("Libellé : ");
 		String libelle = sc.next();
 			
 		System.out.println();
@@ -88,15 +89,10 @@ public class Programme
 	 */
 	private static boolean creerMachines()
 	{
-		System.out.print("Numéro : ");
+		System.out.print("\nNuméro : ");
 		int num = sc.nextInt();
 			
-		System.out.print("\nStock max : ");
-		int stockMax = sc.nextInt();
-			
-		System.out.println();
-			
-		System.out.println("Type : ");
+		System.out.println("\nType : ");
 
 		System.out.println(typesMachine);
 			
@@ -109,20 +105,21 @@ public class Programme
 		{
 			try
 			{
-				atelier.ajouter(new Machine(num, stockMax, type));
+				atelier.ajouter(new Machine(num, type));
 			}
 			catch (Exception e)
 			{
 				System.out.println(e.getMessage());
 				return true;
 			}
-				
 			num++;
 		}
-			
-		System.out.println("Machine(s) créée(s)");
 		
-		System.out.println("Nouvelle machine ?");
+		System.out.println("\nMachine(s) créée(s)");
+		
+		System.out.println(atelier);
+		
+		System.out.println("Nouvelle(s) machine(s) ?");
 		System.out.println("1 - Oui");
 		System.out.println("0 - Non");
 
@@ -136,24 +133,24 @@ public class Programme
 	 */
 	private static boolean creerOperation()
 	{
-		System.out.print("Numéro : ");
+		System.out.print("\nNuméro : ");
 		int num = sc.nextInt();
 		
-		System.out.print("\nType : ");
+		System.out.print("Type : ");
 		char type = sc.next().charAt(0);
 
-		System.out.println("Machine : ");
+		System.out.println("Type de machine : ");
 		
-		System.out.println(atelier);
+		System.out.println(typesMachine);
 
-		System.out.println("Numéro de machine : ");
+		System.out.println("Numéro du type de machine : ");
 
-		int numMachine = sc.nextInt();
-		Machine machine = atelier.getMachine(numMachine);
+		int numTypeMachine = sc.nextInt();
+		TypeMachine typeMachine = typesMachine.getType(numTypeMachine);
 		
 		try
 		{
-			operations.ajouter(new Operation(num, type, machine));
+			operations.ajouter(new Operation(num, type, typeMachine));
 		}
 		catch (Exception e)
 		{
@@ -177,28 +174,49 @@ public class Programme
 	 */
 	private static boolean creerGamme(){
 		
-		System.out.print("Numéro : ");
+		System.out.print("\nNuméro : ");
 		int num = sc.nextInt();
 		
 		Gamme gamme = new Gamme(num);
 		
 		System.out.println("Phases :");
 		
-		boolean nouvelleOp;
+		boolean nouvellePhase;
 		
 		do
 		{
 			System.out.println(operations);
 			
 			System.out.print("Numéro de l'opération : ");
-			gamme.ajoutOp(operations.getOp(sc.nextInt()));
+			Operation operation = operations.getOp(sc.nextInt());
+			
+			System.out.print("Durée (en min.) : ");
+			double duree = sc.nextDouble();
+			
+			System.out.print("Numéro : ");
+			int numPhase = sc.nextInt();
+			
+			Phase phase = new Phase(numPhase, operation, duree);
+			
+			try
+			{
+				gamme.ajoutPhase(phase);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+				nouvellePhase = true;
+				continue;
+			}
 			
 			System.out.println("Ajouter phase ?");
 			System.out.println("1 - Oui");
 			System.out.println("0 - Non");
 			
-			nouvelleOp = sc.nextInt() == 1;
-		} while (nouvelleOp);
+			nouvellePhase = sc.nextInt() == 1;
+		} while (nouvellePhase);
+		
+		gamme.ordonnerPhases();
 		
 		try
 		{
@@ -210,9 +228,17 @@ public class Programme
 			return true;
 		}
 		
-		System.out.println("Gamme créée.");
+		System.out.println("\nGamme créée.");
+		
+		for (int i = 0; i < gamme.getNbPhases(); i++)
+		{
+			if (gamme.getPhase(i) != null)
+			{
+				System.out.println(gamme.getPhase(i));
+			}
+		}
 	
-		System.out.println("Nouvelle Gamme ?");
+		System.out.println("\nNouvelle Gamme ?");
 		System.out.println("1 - Oui");
 		System.out.println("0 - Non");
 
@@ -226,53 +252,81 @@ public class Programme
 	 */
 	private static boolean creerProduit()
 	{			
-		System.out.print("ID : ");
+		System.out.print("\nId : ");
 		int id = sc.nextInt();
-		
-		System.out.println();
 		
 		System.out.print("Type : ");
 		String type = sc.next();
 		
-		System.out.println();
-		
-		System.out.println("Gamme : ");
+		System.out.print("Gamme : ");
 		
 		System.out.println(gammes);
 
-		System.out.println("Numéro de Gamme : ");
+		System.out.print("Numéro de Gamme : ");
 		int numGamme = sc.nextInt();
 
 		Gamme gamme = gammes.getGamme(numGamme);
 		
-		Produit p = new Produit(id, type, gamme);
-		
-		System.out.println("Durées par machines : ");
-		
-		for (Machine m : gamme.getMachines())
+		System.out.println("Combien de produits voulez-vous créer ?");
+		int nbProduits = sc.nextInt();
+			
+		for (int j = 0; j < nbProduits; j++)
 		{
-			System.out.println(m);
-			System.out.print("Duree : ");
-			p.ajouterDuree(m, sc.nextDouble());
+			try
+			{
+				produits.ajouter(new Produit(id, type, gamme));
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+				return true;
+			}
+			id++;
 		}
 		
-		try
-		{
-			produits.ajouter(p);
-		}
-		catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-			return true;
-		}
-		
-		System.out.println("Produit créé");
+		System.out.println("\nProduit(s) créé(s)");
 	
-		System.out.println("Nouveau produit ?");
+		System.out.println("Nouveau(x) produit(s) ?");
 		System.out.println("1 - Oui");
 		System.out.println("0 - Non");
 
 		return sc.nextInt() == 1;
+	}
+	
+	private static void repartirProduits()
+	{
+		int i;
+		
+		for (Gamme gamme : gammes.getGammes())
+		{
+			i = 0;
+			
+			Phase phase = gamme.getPhase(0);
+			TypeMachine type = phase.getOperation().getTypeMachine();
+			
+			List<Produit> produits = Programme.produits.getProduitsByGamme(gamme);
+			
+			while (produits.size() != 0)
+			{
+				for (Machine m : atelier.getMachinesByType(type))
+				{
+					if ((produits.size() - 1) >= i)
+					{
+						produits.get(i).setPhaseCourante(phase);
+
+						m.ajouterStock(produits.get(i));
+
+						produits.remove(i);
+					}
+					else
+					{
+						break;
+					}
+
+					i++;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -291,7 +345,7 @@ public class Programme
 			nouveauType = creerTypeMachine();
 		} while (nouveauType);
 		
-		System.out.println("Création de machines : ");
+		System.out.println("\nCréation de machines : ");
 		
 		boolean nouvelleMachine;
 
@@ -300,7 +354,7 @@ public class Programme
 			nouvelleMachine = creerMachines();
 		} while (nouvelleMachine);
 		
-		System.out.println("Création d'opérations : ");
+		System.out.println("\nCréation d'opérations : ");
 
 		boolean nouvelleOperation;
 		
@@ -309,7 +363,7 @@ public class Programme
 			nouvelleOperation = creerOperation();
 		} while (nouvelleOperation);
 		
-		System.out.println("Création de gammes : ");
+		System.out.println("\nCréation de gammes : ");
 		
 		boolean nouvelleGamme;
 		
@@ -318,7 +372,7 @@ public class Programme
 			nouvelleGamme = creerGamme();
 		} while (nouvelleGamme);
 		
-		System.out.println("Création de produits : ");
+		System.out.println("\nCréation de produits : ");
 		
 		boolean nouveauProduit;
 		
@@ -326,6 +380,8 @@ public class Programme
 		{
 			nouveauProduit = creerProduit();
 		} while (nouveauProduit);
+		
+		repartirProduits();
 		
 		// TODO Lancement de la simulation.
 	}

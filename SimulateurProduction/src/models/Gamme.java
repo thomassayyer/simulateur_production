@@ -4,6 +4,8 @@ import models.Operation;
 import java.util.LinkedList;
 import java.util.List;
 
+import auxiliary.comparators.PhasesComparator;
+
 /**
  * Représente une gamme (suite d'opération memant à un produit).
  * 
@@ -15,7 +17,7 @@ public class Gamme
 	/**
 	 * Opération dans la gamme
 	 */
-	private List<Operation> phases;
+	private List<Phase> phases;
 	
 	/**
 	 * Numéro de la gamme.
@@ -27,40 +29,51 @@ public class Gamme
 	 */
 	public Gamme(int num) 
 	{
-		this.phases = new LinkedList<Operation>();
+		this.phases = new LinkedList<Phase>();
 		this.num = num;
 	}
 	
-	/**
-	 * Affiche les phases.
-	 */
-	public void afficherPhases()
+	public void ordonnerPhases()
 	{
-		for (int i=0; i < phases.size(); i++) {
-			System.out.println(i + " - " + phases.get(i));
-		}
+		this.phases.sort(new PhasesComparator());
 	}
 	
 	/**
 	 * Ajout d'une opération à la fin de la liste.
 	 */
-	public boolean ajoutOp(Operation newOp)
+	public boolean ajoutPhase(Phase p) throws Exception
 	{
-		return phases.add(newOp);
+		for (Phase ph : this.phases)
+		{
+			if (ph.equals(p))
+			{
+				throw new Exception("Cette phase a déjà été ajoutée.");
+			}
+		}
+		
+		return phases.add(p);
 	}
 
 	/**
 	 * Ajout d'une opération à un index
 	 */
-	public void ajoutOp(Operation newOp, int index)
+	public void ajoutPhase(Phase p, int index) throws Exception
 	{
-		phases.add(index, newOp);
+		for (Phase ph : this.phases)
+		{
+			if (ph.equals(p))
+			{
+				throw new Exception("Cette phase a déjà été ajoutée.");
+			}
+		}
+		
+		phases.add(index, p);
 	}
 
 	/**
 	 * Supprime l'opération à l'index.
 	 */
-	public Operation suppOp(int index)
+	public Phase suppPhase(int index)
 	{
 		return phases.remove(index);
 	}
@@ -70,9 +83,9 @@ public class Gamme
 	 * 
 	 * @author Jérémi Chevallier
 	 */
-	public int rechercheOp(Operation searchOp)
+	public int recherchePhase(Phase p)
 	{
-		return phases.indexOf(searchOp);
+		return phases.indexOf(p);
 	}
 	
 	/**
@@ -86,16 +99,45 @@ public class Gamme
 		return this.num;
 	}
 	
-	public List<Machine> getMachines()
+	public int getNbPhases()
 	{
-		List<Machine> machines = new LinkedList<Machine>();
-		
-		for (Operation o : this.phases)
+		return this.phases.size();
+	}
+	
+	public Phase getPhase(int index)
+	{
+		return this.phases.get(index);
+	}
+	
+	public int getPosPhase(Phase phase)
+	{
+		for (int i = 0; i < this.phases.size(); i++)
 		{
-			machines.add(o.getMachine());
+			if (this.phases.get(i).equals(phase))
+			{
+				return i;
+			}
 		}
 		
-		return machines;
+		return -1;
+	}
+	
+	public List<Operation> getOperations()
+	{
+		LinkedList<Operation> operations = new LinkedList<Operation>();
+		
+		for (Phase p : this.phases)
+		{
+			operations.add(p.getOperation());
+		}
+		
+		return operations;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return String.valueOf(this.num);
 	}
 	
 	@Override

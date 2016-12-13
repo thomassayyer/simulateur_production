@@ -13,6 +13,8 @@ import models.Operation;
  * @param <T> Type de la donnée à stocker.
  */
 public abstract class Repository<T> {
+	
+	protected static Repository instance;
 
 	/**
 	 * Liste chaînée contenant les objets de type T.
@@ -22,7 +24,7 @@ public abstract class Repository<T> {
 	/**
 	 * Constructeur non paramétré qui instancie la liste chaînée.
 	 */
-	public Repository()
+	protected Repository()
 	{
 		this.list = new LinkedList<T>();
 	}
@@ -72,7 +74,7 @@ public abstract class Repository<T> {
 		
 		for (T o : this.list)
 		{
-			str += o;
+			str += o + "\n";
 		}
 		
 		return str;

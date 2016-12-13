@@ -12,6 +12,16 @@ import models.Gamme;
  */
 public class GammeRepository extends Repository<Gamme>
 {
+	public static GammeRepository getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new GammeRepository();
+		}
+		
+		return (GammeRepository)instance;
+	}
+	
 	/**
 	 * Récupère la gamme correspondante au numéro en paramètre.
 	 * 
@@ -29,5 +39,10 @@ public class GammeRepository extends Repository<Gamme>
 		}
 		
 		return null;
+	}
+	
+	public List<Gamme> getGammes()
+	{
+		return this.list;
 	}
 }
