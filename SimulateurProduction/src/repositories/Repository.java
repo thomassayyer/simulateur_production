@@ -13,8 +13,6 @@ import models.Operation;
  * @param <T> Type de la donnée à stocker.
  */
 public abstract class Repository<T> {
-	
-	protected static Repository instance;
 
 	/**
 	 * Liste chaînée contenant les objets de type T.

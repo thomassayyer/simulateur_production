@@ -14,6 +14,8 @@ import models.Produit;
  */
 public class ProduitRepository extends Repository<Produit>
 {
+	private static ProduitRepository instance;
+	
 	public static ProduitRepository getInstance()
 	{
 		if (instance == null)

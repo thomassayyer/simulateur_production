@@ -18,6 +18,8 @@ import models.TypeMachine;
  */
 public class Atelier extends Repository<Machine>
 {
+	private static Atelier instance;
+	
 	public static Atelier getInstance()
 	{
 		if (instance == null)
@@ -81,5 +83,10 @@ public class Atelier extends Repository<Machine>
 		}
 		
 		return false;
+	}
+	
+	public List<Machine> getMachines()
+	{
+		return this.list;
 	}
 }

@@ -105,7 +105,7 @@ public class Gamme
 	}
 	
 	public Phase getPhase(int index)
-	{
+	{		
 		return this.phases.get(index);
 	}
 	

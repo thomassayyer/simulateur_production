@@ -12,6 +12,8 @@ import models.Gamme;
  */
 public class GammeRepository extends Repository<Gamme>
 {
+	private static GammeRepository instance;
+	
 	public static GammeRepository getInstance()
 	{
 		if (instance == null)

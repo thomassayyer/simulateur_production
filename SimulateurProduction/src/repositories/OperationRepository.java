@@ -12,7 +12,9 @@ import java.util.List;
  * @version 1.0
  */
 public class OperationRepository extends Repository<Operation>
-{	
+{
+	private static OperationRepository instance;
+	
 	public static OperationRepository getInstance()
 	{
 		if (instance == null)

@@ -300,17 +300,20 @@ public class Programme
 		{
 			List<Produit> prods = produits.getProduitsByGamme(gamme);
 			
-			// Tous les produits de la gamme en sont à la même phase.
-			Phase phase = prods.get(0).getPhaseCourante();
-
-			TypeMachine type = phase.getOperation().getTypeMachine();
-			
-			List<Machine> machines = atelier.getMachinesByType(type);
-			
-			for (Produit produit : produits.getProduitsByGamme(gamme))
+			if (prods.size() > 0)
 			{
-				machines.sort(new MachinesTempsComparator());
-				atelier.getMachinesByType(type).get(0).ajouterStock(produit);
+				// Tous les produits de la gamme en sont à la même phase.
+				Phase phase = prods.get(0).getPhaseCourante();
+
+				TypeMachine type = phase.getOperation().getTypeMachine();
+				
+				List<Machine> machines = atelier.getMachinesByType(type);
+				
+				for (Produit produit : produits.getProduitsByGamme(gamme))
+				{
+					machines.sort(new MachinesTempsComparator());
+					atelier.getMachinesByType(type).get(0).ajouterStock(produit);
+				}
 			}
 		}
 	}
@@ -367,10 +370,34 @@ public class Programme
 			nouveauProduit = creerProduit();
 		} while (nouveauProduit);
 		
-		do
+		repartirProduits();
+		
+		while (atelier.hasMachinesAvecStock())
 		{
-			repartirProduits();
 			atelier.lancerSimulation();
-		} while (atelier.hasMachinesAvecStock());
+			repartirProduits();
+		}
+		
+		double tempsTotal = 0;
+		
+		for (Machine m : atelier.getMachines())
+		{
+			System.out.println(m);
+			System.out.println();
+			System.out.println(m.getStockMax());
+			System.out.println("Produits réalisés : ");
+			
+			for (Produit p : m.getProduitsFinis())
+			{
+				System.out.println(p);
+			}
+			
+			if (m.getTemps() > tempsTotal)
+			{
+				tempsTotal = m.getTemps();
+			}
+		}
+		
+		System.out.println("\nTemps total : " + tempsTotal + " min.");
 	}
 }

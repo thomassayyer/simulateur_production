@@ -26,6 +26,8 @@ public class Machine
 	 */
 	private List<Produit> stock;
 	
+	private int stockMax;
+	
 	private List<Produit> produitsFinis;
 	
 	private double temps;
@@ -43,6 +45,7 @@ public class Machine
 		this.temps = 0;
 		this.stock = new LinkedList<Produit>();
 		this.produitsFinis = new LinkedList<Produit>();
+		this.stockMax = 0;
 	}
 	
 	/**
@@ -53,7 +56,14 @@ public class Machine
 	 */
 	public boolean ajouterStock(Produit produit)
 	{
-		return this.stock.add(produit);
+		boolean add = this.stock.add(produit);
+		
+		if (this.stock.size() > this.stockMax)
+		{
+			this.stockMax = this.stock.size();
+		}
+		
+		return add;
 	}
 	
 	/**
@@ -64,7 +74,15 @@ public class Machine
 	 */
 	public boolean retirerStock(Produit produit)
 	{
-		return this.stock.remove(produit);
+		for (Produit p : this.stock)
+		{
+			if (p.equals(produit))
+			{
+				return this.stock.remove(p);
+			}
+		}
+
+		return false;
 	}
 	
 	/**
@@ -87,9 +105,19 @@ public class Machine
 		return this.temps;
 	}
 	
+	public int getStockMax()
+	{
+		return this.stockMax;
+	}
+	
 	public Produit getProduit(int i)
 	{
 		return this.stock.get(i);
+	}
+	
+	public List<Produit> getProduitsFinis()
+	{
+		return this.produitsFinis;
 	}
 	
 	public void lancerSimulation()
@@ -103,13 +131,16 @@ public class Machine
 			Gamme gamme = produit.getGamme();
 				
 			int indexPhaseCourante = gamme.getPosPhase(phase);
-				
-			produit.setPhaseCourante(gamme.getPhase(indexPhaseCourante + 1));
 			
-			this.retirerStock(produit);
+			if ((indexPhaseCourante + 1) < gamme.getNbPhases())
+			{
+				produit.setPhaseCourante(gamme.getPhase(indexPhaseCourante + 1));
+			}
 			
 			this.produitsFinis.add(produit);
 		}
+		
+		this.stock.clear();
 	}
 	
 	public int getStockSize()

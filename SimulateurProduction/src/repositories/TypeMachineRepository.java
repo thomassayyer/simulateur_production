@@ -11,7 +11,9 @@ import models.TypeMachine;
  * @version 1.0
  */
 public class TypeMachineRepository extends Repository<TypeMachine>
-{	
+{
+	private static TypeMachineRepository instance;
+	
 	public static TypeMachineRepository getInstance()
 	{
 		if (instance == null)
