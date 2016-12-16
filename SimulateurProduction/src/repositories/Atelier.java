@@ -18,8 +18,16 @@ import models.TypeMachine;
  */
 public class Atelier extends Repository<Machine>
 {
+	/**
+	 * Instance singleton de l'atelier.
+	 */
 	private static Atelier instance;
 	
+	/**
+	 * Retourne l'instance singleton de l'atelier.
+	 * 
+	 * @return Instance singleton de l'atelier.
+	 */
 	public static Atelier getInstance()
 	{
 		if (instance == null)
@@ -30,6 +38,12 @@ public class Atelier extends Repository<Machine>
 		return (Atelier)instance;
 	}
 	
+	/**
+	 * Retourne une liste de machines dont le type est spécifié en paramètre.
+	 * 
+	 * @param type Type de machine des machines à récupérer.
+	 * @return Liste des machines du type correspondant.
+	 */
 	public List<Machine> getMachinesByType(TypeMachine type)
 	{
 		List<Machine> machines = new LinkedList<Machine>();
@@ -64,6 +78,9 @@ public class Atelier extends Repository<Machine>
 		return null;
 	}
 	
+	/**
+	 * Lance la simulation de toutes les machines présentent dans l'atelier.
+	 */
 	public void lancerSimulation()
 	{
 		for (Machine m : this.list)
@@ -72,6 +89,11 @@ public class Atelier extends Repository<Machine>
 		}
 	}
 	
+	/**
+	 * Détermine si l'atelier possède encore des machine avec du stock de produit.
+	 * 
+	 * @return Vrai si une ou plusieurs machines possèdent encore du stock; faux sinon.
+	 */
 	public boolean hasMachinesAvecStock()
 	{
 		for (Machine m : this.list)
@@ -85,8 +107,13 @@ public class Atelier extends Repository<Machine>
 		return false;
 	}
 	
+	/**
+	 * Retourne la liste des machines présentent dans l'atelier.
+	 * 
+	 * @return Liste des machines présentent dans l'atelier.
+	 */
 	public List<Machine> getMachines()
 	{
-		return this.list;
+		return new LinkedList<Machine>(this.list);
 	}
 }
