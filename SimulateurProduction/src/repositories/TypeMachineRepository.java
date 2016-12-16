@@ -12,8 +12,16 @@ import models.TypeMachine;
  */
 public class TypeMachineRepository extends Repository<TypeMachine>
 {
+	/**
+	 * Instance singleton du Repository.
+	 */
 	private static TypeMachineRepository instance;
 	
+	/**
+	 * Retourne l'instance singleton du Repository.
+	 * 
+	 * @return Instance singleton du Repository.
+	 */
 	public static TypeMachineRepository getInstance()
 	{
 		if (instance == null)

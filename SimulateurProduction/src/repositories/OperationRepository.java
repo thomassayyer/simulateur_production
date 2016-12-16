@@ -13,8 +13,16 @@ import java.util.List;
  */
 public class OperationRepository extends Repository<Operation>
 {
+	/**
+	 * Instance singleton du Repository.
+	 */
 	private static OperationRepository instance;
 	
+	/**
+	 * Retourne l'instance singleton du Repository.
+	 * 
+	 * @return Instance singleton du Repository.
+	 */
 	public static OperationRepository getInstance()
 	{
 		if (instance == null)
