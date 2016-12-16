@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import models.Gamme;
@@ -12,8 +13,16 @@ import models.Gamme;
  */
 public class GammeRepository extends Repository<Gamme>
 {
+	/**
+	 * Instance singleton du Repository.
+	 */
 	private static GammeRepository instance;
 	
+	/**
+	 * Retourne l'instance singleton du Repository.
+	 * 
+	 * @return Instance singleton du Repository.
+	 */
 	public static GammeRepository getInstance()
 	{
 		if (instance == null)
@@ -43,8 +52,13 @@ public class GammeRepository extends Repository<Gamme>
 		return null;
 	}
 	
+	/**
+	 * Retourne la liste de toutes les gammes présentes dans l'entrepôt.
+	 * 
+	 * @return Liste de toutes les gammes présentes dans l'entrepôt.
+	 */
 	public List<Gamme> getGammes()
 	{
-		return this.list;
+		return new LinkedList<Gamme>(this.list);
 	}
 }
