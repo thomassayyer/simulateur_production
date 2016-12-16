@@ -294,6 +294,9 @@ public class Programme
 		return sc.nextInt() == 1;
 	}
 	
+	/**
+	 * Effectue les opérations de répartition des produits dans les machines.
+	 */
 	private static void repartirProduits()
 	{
 		for (Gamme gamme : gammes.getGammes())

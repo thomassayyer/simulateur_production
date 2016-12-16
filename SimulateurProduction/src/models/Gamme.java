@@ -1,6 +1,5 @@
 package models;
 
-import models.Operation;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import auxiliary.comparators.PhasesComparator;
 public class Gamme
 {	
 	/**
-	 * Opération dans la gamme
+	 * Phases dans la gamme.
 	 */
 	private List<Phase> phases;
 	
@@ -25,7 +24,9 @@ public class Gamme
 	private int num;
 	
 	/**
-	 * Constructeur d'une liste.
+	 * Constructeur initialisant une gamme vide muni d'un numéro unique.
+	 * 
+	 * @param num Numéro unique de la gamme à créer.
 	 */
 	public Gamme(int num) 
 	{
@@ -33,13 +34,21 @@ public class Gamme
 		this.num = num;
 	}
 	
+	/**
+	 * Ordonne les phases de la gamme selon les critères définis dans le PhasesComparator.
+	 * 
+	 * @see auxiliary.comparators.PhasesComparator
+	 */
 	public void ordonnerPhases()
 	{
 		this.phases.sort(new PhasesComparator());
 	}
 	
 	/**
-	 * Ajout d'une opération à la fin de la liste.
+	 * Ajout d'une phase à la fin de la liste.
+	 * 
+	 * @param p Phase à ajouter.
+	 * @return Vrai si la phase a été ajouée; faux sinon.
 	 */
 	public boolean ajoutPhase(Phase p) throws Exception
 	{
@@ -53,85 +62,46 @@ public class Gamme
 		
 		return phases.add(p);
 	}
-
-	/**
-	 * Ajout d'une opération à un index
-	 */
-	public void ajoutPhase(Phase p, int index) throws Exception
-	{
-		for (Phase ph : this.phases)
-		{
-			if (ph.equals(p))
-			{
-				throw new Exception("Cette phase a déjà été ajoutée.");
-			}
-		}
-		
-		phases.add(index, p);
-	}
-
-	/**
-	 * Supprime l'opération à l'index.
-	 */
-	public Phase suppPhase(int index)
-	{
-		return phases.remove(index);
-	}
-
-	/**
-	 * Retourne l'index de l'opération.
-	 * 
-	 * @author Jérémi Chevallier
-	 */
-	public int recherchePhase(Phase p)
-	{
-		return phases.indexOf(p);
-	}
 	
 	/**
 	 * Retourne le numéro de la gamme.
 	 * 
 	 * @return Numéro de la gamme.
-	 * 
-	 * @author Jérémi Chevallier
 	 */
 	public int getNum(){
 		return this.num;
 	}
 	
+	/**
+	 * Retourne le nombre de phases présentes dans la gamme.
+	 * 
+	 * @return Nombre de phases de la gamme.
+	 */
 	public int getNbPhases()
 	{
 		return this.phases.size();
 	}
 	
+	/**
+	 * Retourne la phase à l'index défini en paramètre.
+	 * 
+	 * @param index Index de la phase à récupérer.
+	 * @return La phase à l'index "index".
+	 */
 	public Phase getPhase(int index)
 	{		
 		return this.phases.get(index);
 	}
 	
+	/**
+	 * Retourne la position d'une phase dans la liste.
+	 * 
+	 * @param phase Phase de laquelle récupérer la position.
+	 * @return Index de la position de la phase dans la liste.
+	 */
 	public int getPosPhase(Phase phase)
 	{
-		for (int i = 0; i < this.phases.size(); i++)
-		{
-			if (this.phases.get(i).equals(phase))
-			{
-				return i;
-			}
-		}
-		
-		return -1;
-	}
-	
-	public List<Operation> getOperations()
-	{
-		LinkedList<Operation> operations = new LinkedList<Operation>();
-		
-		for (Phase p : this.phases)
-		{
-			operations.add(p.getOperation());
-		}
-		
-		return operations;
+		return phases.indexOf(phase);
 	}
 	
 	@Override

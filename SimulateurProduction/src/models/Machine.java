@@ -26,10 +26,19 @@ public class Machine
 	 */
 	private List<Produit> stock;
 	
+	/**
+	 * Nombre de produits maximal ayant été dans la machine lors de la simulation.
+	 */
 	private int stockMax;
 	
+	/**
+	 * Liste des produits dont la simulation est terminée.
+	 */
 	private List<Produit> produitsFinis;
 	
+	/**
+	 * Temps de traitement actuel de la machine.
+	 */
 	private double temps;
 	
 	/**
@@ -95,31 +104,50 @@ public class Machine
 		return this.num;
 	}
 	
+	/**
+	 * Retourne le type de la machine.
+	 * 
+	 * @return Type de la machine.
+	 */
 	public TypeMachine getType()
 	{
 		return this.type;
 	}
 	
+	/**
+	 * Retourne le temps actuel de production de la machine.
+	 * 
+	 * @return Temps actuel de production (en simulation) de la machine.
+	 */
 	public double getTemps()
 	{
 		return this.temps;
 	}
 	
+	/**
+	 * Retourne le nombre d'élément maximum ayant été contenu dans le stock durant
+	 * la simulation.
+	 * 
+	 * @return Stock maximale durant la simulation.
+	 */
 	public int getStockMax()
 	{
 		return this.stockMax;
 	}
 	
-	public Produit getProduit(int i)
-	{
-		return this.stock.get(i);
-	}
-	
+	/**
+	 * Retourne la liste des produits finis par cette machine de production.
+	 * 
+	 * @return Liste des produits finis par la machine.
+	 */
 	public List<Produit> getProduitsFinis()
 	{
 		return this.produitsFinis;
 	}
 	
+	/**
+	 * Lance une simulation de production sur la machine.
+	 */
 	public void lancerSimulation()
 	{
 		for (Produit produit : this.stock)
@@ -143,6 +171,11 @@ public class Machine
 		this.stock.clear();
 	}
 	
+	/**
+	 * Retourne le nombre d'éléments présents dans le stock.
+	 * 
+	 * @return Nombre d'éléments présents dans le stock.
+	 */
 	public int getStockSize()
 	{
 		return this.stock.size();
